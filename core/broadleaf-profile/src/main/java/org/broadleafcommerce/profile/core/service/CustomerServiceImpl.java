@@ -129,22 +129,7 @@ public class CustomerServiceImpl implements CustomerService {
     
     @Resource(name="blRoleDao")
     protected RoleDao roleDao;
-    
-    @Resource(name="blEmailService")
-    protected EmailService emailService;
-    
-    @Resource(name="blForgotPasswordEmailInfo")
-    protected EmailInfo forgotPasswordEmailInfo;
 
-    @Resource(name="blForgotUsernameEmailInfo")
-    protected EmailInfo forgotUsernameEmailInfo;    
-    
-    @Resource(name="blRegistrationEmailInfo")
-    protected EmailInfo registrationEmailInfo;    
-    
-    @Resource(name="blChangePasswordEmailInfo")
-    protected EmailInfo changePasswordEmailInfo;       
-    
     protected int tokenExpiredMinutes = 30;
     protected int passwordTokenLength = 20;   
              
@@ -688,10 +673,6 @@ public class CustomerServiceImpl implements CustomerService {
         return minutesSinceSave > tokenExpiredMinutes;
     }
 
-    protected void sendEmail(String emailAddress, EmailInfo emailInfo, Map<String, Object> props) {
-        emailService.sendTemplateEmail(emailAddress, emailInfo, props);
-    }
-
     public int getTokenExpiredMinutes() {
         return tokenExpiredMinutes;
     }
@@ -708,37 +689,6 @@ public class CustomerServiceImpl implements CustomerService {
         this.passwordTokenLength = passwordTokenLength;
     }
 
-    public EmailInfo getForgotPasswordEmailInfo() {
-        return forgotPasswordEmailInfo;
-    }
-
-    public void setForgotPasswordEmailInfo(EmailInfo forgotPasswordEmailInfo) {
-        this.forgotPasswordEmailInfo = forgotPasswordEmailInfo;
-    }
-
-    public EmailInfo getForgotUsernameEmailInfo() {
-        return forgotUsernameEmailInfo;
-    }
-
-    public void setForgotUsernameEmailInfo(EmailInfo forgotUsernameEmailInfo) {
-        this.forgotUsernameEmailInfo = forgotUsernameEmailInfo;
-    }
-
-    public EmailInfo getRegistrationEmailInfo() {
-        return registrationEmailInfo;
-    }
-
-    public void setRegistrationEmailInfo(EmailInfo registrationEmailInfo) {
-        this.registrationEmailInfo = registrationEmailInfo;
-    }
-
-    public EmailInfo getChangePasswordEmailInfo() {
-        return changePasswordEmailInfo;
-    }
-
-    public void setChangePasswordEmailInfo(EmailInfo changePasswordEmailInfo) {
-        this.changePasswordEmailInfo = changePasswordEmailInfo;
-    }
 
     @Deprecated
     protected boolean usingDeprecatedPasswordEncoder() {
